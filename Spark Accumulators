@@ -1,2 +1,8 @@
 
-Accumulators
+Accumulators special type of variables. It is shared among all the nodes of the cluster
+Two important characteristics of accumulator 
+1. Individual nodes can only write to accumulator
+2. Main program can only read the accumulator
+
+Broadcast variables are immutable
+
