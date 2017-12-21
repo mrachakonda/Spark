@@ -1,8 +1,34 @@
-
 Accumulators special type of variables. It is shared among all the nodes of the cluster
 Two important characteristics of accumulator 
 1. Individual nodes can only write to accumulator
-2. Main program can only read the accumulator
-
+2. Main/Driver program can only read the accumulator
+Driver Program - creates and read the accumulator
 Broadcast variables are immutable
+in the main program we can access the value 
+errorCnt.value 
+
+Lets see in action
+The problem statement is to read a log file and get the count of errors events
+
+save the below line in ErrorCount.py
+
+from pyspark import SparkConf, SparkContext
+conf = SparkConf().setMaster("yarn-client").setAppName("My Error Count")
+sc=SparkContext(conf=conf)
+logsPath= "hdfs:///user/mrachakonda/log/filename.log"
+logs = sc.textFile(path)
+errorCnt = sc.accumulator(0)
+def parseLogAndUpdateErrCount(line):
+	global errorCnt
+    //parse the log file and returns a tuple field1,field2
+	datefield = line[:24]
+	restfields = line[24:]
+    if "ERROR" in line:
+		errorCnt+=1
+	return (datefield,restfields)
+
+logs.map(parseLog).saveAsTextFile("hdfs:///user/mrachakonda/output")
+print "Number of errors in the log are" + str(errorCnt.value)
+
+spark-submit ErrorCount.py
 
