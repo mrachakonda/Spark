@@ -1,0 +1,42 @@
+Spark Execution Behind The Scenes
+
+When we submit our job spark-shell or spark-sumbit, we see bunch of messages in the screen
+Which give different log details INFO Then we see something like
+spark.SparkContext - Start the job 
+scheduler.DAGScheduler - Which receives the job 
+cluster.YarnScheduler - Which is performing some tasks
+scheduler.TaskSetManager - Which is starting and completing the tasks
+
+Driver Program use a spark context to communicate to the spark cluster
+Driver Program has two phases
+	1.Initial Setup
+		This happens when job has been launched
+		
+	2.Job Run 
+		It is initiated when the program does any processing/action tasks
+		
+Spark needs a separate cluster manager to manage the resources across the cluster
+
+Initial Setup
+------------------
+When driver program starts it contacts the cluster manager through spark context
+Cluster manager allocates/kick starts # of Executors 
+Executors are now ready to take instruction
+Executors registered themselves witht the driver program
+
+Job Run
+
+DAGScheduler is responsible breaking the instruction into small units of work 
+
+JOB > STAGES -> TASKS
+
+Take an example of below instruction 
+
+somerdd.map().reduce()
+
+Stage 0 - map 
+				Tasks are on individual partitions of the RDD
+Stage 1 - Reduce 
+				Tasks are on individual partitions of the RDD
+
+Stages + Task forms DAG 
