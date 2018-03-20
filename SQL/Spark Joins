@@ -1,0 +1,17 @@
+ShuffleHashJoin
+A ShuffleHashJoin is the most basic way to join tables in Spark – we’ll diagram how Spark shuffles the dataset to make this happen.
+
+BroadcastHashJoin
+A BroadcastHashJoin is also a very common way for Spark to join two tables under the special condition that one of your tables is small.
+
+Dealing with Key Skew in a ShuffleHashJoin
+Key Skew is a common source of slowness for a Shuffle Hash Join – we’ll describe what this is and how you might work around this.
+
+CartesianJoin
+Cartesian Joins is a hard problem – we’ll describe why it’s difficult as well as what you need to do to make that work and what to look out for.
+
+One to Many Joins
+When a single row in one table can match to many rows in your other table, the total number of output rows in your joined table can be really high. We’ll let you know how to deal with this.
+
+Theta Joins
+If you aren’t joining two tables strictly by key, but instead checking on a condition for your tables, you may need to provide some hints to Spark SQL to get this to run well. We’ll describe what you can do to make this work.
