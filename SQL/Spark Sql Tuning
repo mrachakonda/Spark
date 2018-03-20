@@ -1,0 +1,20 @@
+File Formats
+  spark.sql.sources.default - By default Parquet
+  spark.sql.hive.convertMetastoreParque
+
+Split Optimization
+
+Table Caching
+
+  spark.cacheTable(“name”) or dataFrame.cache()
+  spark.sql.inMemoryColumnarStorage.compress is true => Spark SQL will tune compression 
+  
+Join Optimization
+  spark.sql.autoBroadcastJoinThreshold 
+  
+Shuffle Partitions
+  spark.sql.shuffle.partitions
+
+Partition Bytes
+
+  spark.sql.files.maxPartitionBytes => The number of bytes written to a partition - and thus the measure of partition size 
