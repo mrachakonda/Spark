@@ -1,0 +1,14 @@
+This post from Facebook gives different pointers on how to tune Spark application.
+https://code.facebook.com/posts/1671373793181703/apache-spark-scale-a-60-tb-production-use-case/
+
+Key Highlights 
+1. How to tune Hive jobs if re-writting the application in Spark SQL
+2. When building application with large dataset multi TBs, good practice is to start with small dataset first and keep expanding it
+3. How to write spark application keeping in mind network/node failures in mind
+4. Make PipedRDD robust to fetch failure
+5. Configurable max number of fetch failures
+5. Less disruptive cluster restart
+6. Unresponsive driver
+7. Excessive driver speculation
+8. TimSort issue due to integer overflow for large buffer
+9. Tune the shuffle service to handle large number of connections - spark.shuffle.io.serverThreads and spark.shuffle.io.backLog
