@@ -1,0 +1,10 @@
+--Some Performance tips which helped me tuning my spark application
+Use cache() or persist () if you perform multiple actions on an RDD
+Don't make your executor memory too large 
+More memory or more cores is better
+Think about partitioning vs your cluster size. Use repartition when appropriate to get better parallelization
+If shrinking an RDD and repartitioning use coalesce() to avoid shuffling
+Use Kryo serialization instead of Java Serialization
+	set conf.set("spark.serializer","org.apache.spark.serializer.KyroSerializer")
+	Must register custom classes using
+	   conf.registerKyroClasses (Array(classOf[MyClass], classOf[MyClass])
