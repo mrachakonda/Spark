@@ -1,0 +1,14 @@
+Common Spark Runtime Erros
+================================
+1. Lost Executor due to exceed heartbeat timeout 
+2. OOM Memory
+3. Intermediate dataframe size too large 
+
+==========================================
+Common Solutions
+1. Increase # of executors
+2. Repartition of the data frame
+3. Increasing executor memory 
+4. 
+===========================================
+spark.driver.maxResultSize=2048
